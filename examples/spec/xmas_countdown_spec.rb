@@ -28,8 +28,16 @@ describe Countdown do
   end
 
   describe '#days_left' do
-    it 'returns 263' do
-      subject.days_left.should == 263
+    pending do
+      it 'returns 263' do
+        subject.days_left.should == 263
+      end
+    end
+  end
+
+  describe 'year' do
+    it 'returns the current year' do
+      subject.year.should == Date.today.year
     end
   end
 end
