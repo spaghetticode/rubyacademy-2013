@@ -15,5 +15,9 @@ describe Countdown do
 
   describe '#today' do
     it { subject.today.should be_a Date }
+
+    it 'is today date' do
+      subject.today.should == Date.parse('2013-04-05')
+    end
   end
 end
