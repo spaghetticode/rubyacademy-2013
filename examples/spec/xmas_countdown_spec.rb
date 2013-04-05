@@ -26,4 +26,10 @@ describe Countdown do
       end
     end
   end
+
+  describe '#days_left' do
+    it 'returns 263' do
+      subject.days_left.should == 263
+    end
+  end
 end
