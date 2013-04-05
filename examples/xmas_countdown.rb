@@ -16,4 +16,8 @@ class Countdown
   def today
     Date.today
   end
+
+  def days_left
+    (next_xmas - today).to_i
+  end
 end
