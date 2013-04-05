@@ -1,6 +1,6 @@
 class Date
   def self.today
-    Date.parse('2013-04-06')
+    Date.parse('2014-04-06')
   end
 end
 
