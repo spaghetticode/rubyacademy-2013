@@ -1,3 +1,9 @@
+class Date
+  def self.today
+    Date.parse('2013-04-06')
+  end
+end
+
 class Countdown
   def xmas_day
     '12-25'
