@@ -13,11 +13,17 @@ describe Countdown do
     end
   end
 
-  describe '#today' do
-    it { subject.today.should be_a Date }
+  context 'when today is "2013-04-05"' do
+    before do
+      Date.stub(:today => Date.parse('2013-04-05'))
+    end
 
-    it 'is today date' do
-      subject.today.should == Date.parse('2013-04-05')
+    describe '#today' do
+      it { subject.today.should be_a Date }
+
+      it 'is today date' do
+        subject.today.should == Date.parse('2013-04-05')
+      end
     end
   end
 end
