@@ -12,4 +12,8 @@ describe Countdown do
       subject.next_xmas.should == Date.parse('2013-12-25')
     end
   end
+
+  describe '#today' do
+    it { subject.today.should be_a Date }
+  end
 end
