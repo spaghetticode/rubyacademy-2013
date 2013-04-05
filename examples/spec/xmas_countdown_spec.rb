@@ -4,4 +4,8 @@ describe Countdown do
   it 'knows when is Christmas' do
     subject.xmas_day.should == '12-25'
   end
+
+  describe '#next_xmas' do
+    it { subject.next_xmas.should be_a Date }
+  end
 end
