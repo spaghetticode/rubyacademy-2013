@@ -9,7 +9,7 @@ describe Countdown do
     it { subject.next_xmas.should be_a Date }
 
     it 'is the next Christmas date' do
-      subject.next_xmas.should == Date.parse('2013-12-25')
+      subject.next_xmas.should == Date.parse('2014-12-25')
     end
   end
 
