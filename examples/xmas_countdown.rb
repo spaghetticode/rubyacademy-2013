@@ -26,6 +26,6 @@ class Countdown
   end
 
   def response
-    "10 days left to Christmas!"
+    "#{days_left} days left to Christmas!"
   end
 end
