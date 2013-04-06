@@ -24,4 +24,8 @@ class Countdown
   def year
     Date.today.year
   end
+
+  def response
+    String.new
+  end
 end
