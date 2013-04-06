@@ -53,5 +53,9 @@ describe Countdown do
 
   describe '#response' do
     it { subject.response.should be_a String }
+
+    it 'should match expected text' do
+      subject.response.should =~ /(\d+) days left to Christmas!$/
+    end
   end
 end
