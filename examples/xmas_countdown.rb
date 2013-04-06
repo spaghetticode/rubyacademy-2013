@@ -26,6 +26,6 @@ class Countdown
   end
 
   def response
-    String.new
+    "10 days left to Christmas!"
   end
 end
