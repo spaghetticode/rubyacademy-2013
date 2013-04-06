@@ -57,5 +57,18 @@ describe Countdown do
     it 'should match expected text' do
       subject.response.should =~ /(\d+) days left to Christmas!$/
     end
+
+    context 'when the current year is 2013 and today is 12-23' do
+      before do
+        Date.stub(
+          :year  => 2013,
+          :today => Date.parse('2013-12-23')
+        )
+      end
+
+      it 'returns expected text with correct days count' do
+        subject.response.should == '2 days left to Christmas!'
+      end
+    end
   end
 end
