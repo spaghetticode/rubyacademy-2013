@@ -50,4 +50,8 @@ describe Countdown do
       subject.year.should == Date.today.year
     end
   end
+
+  describe '#response' do
+    it { subject.response.should be_a String }
+  end
 end
