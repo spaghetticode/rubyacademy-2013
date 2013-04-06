@@ -10,7 +10,7 @@ class Countdown
   end
 
   def next_xmas
-    Date.parse('2013-12-25')
+    Date.parse("#{year}-12-25")
   end
 
   def today
