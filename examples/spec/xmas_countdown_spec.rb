@@ -28,9 +28,19 @@ describe Countdown do
   end
 
   describe '#days_left' do
-    pending do
-      it 'returns 263' do
-        subject.days_left.should == 263
+    context 'when the current year is 2013' do
+      before { Date.stub(:year => 2013) }
+
+      context 'when today is 2013-12-23' do
+        before { Date.stub(:today => Date.parse('2013-12-23')) }
+
+        it { subject.days_left.should == 2 }
+      end
+
+      context 'when today is 2013-12-10' do
+        before { Date.stub(:today => Date.parse('2013-12-10')) }
+
+        it { subject.days_left.should == 15 }
       end
     end
   end
