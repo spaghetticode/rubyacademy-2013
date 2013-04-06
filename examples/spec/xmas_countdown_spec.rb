@@ -71,4 +71,6 @@ describe Countdown do
       end
     end
   end
+
+  # TODO what happens if today is december 27th?
 end
