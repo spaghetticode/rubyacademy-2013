@@ -1,17 +1,16 @@
 .test-table {
   margin: 0 auto !important;
   border-collapse: collapse;
-  background: #ccc;
 }
 
 .test-table th, .test-table td {
-  border: 3px solid black;
+  border: 3px solid white;
   padding: 30px 40px;
   text-align: center !important;
 }
 
 .test-table th {
-  color: black;
+  color: white;
   text-transform: uppercase;
 }
 
@@ -33,4 +32,12 @@
 
 ul {
   line-height: 150% !important;
+}
+
+.reveal pre {
+  width: 100%;
+}
+
+.reveal pre code {
+  max-height: 1000px;
 }

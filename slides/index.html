@@ -38,7 +38,8 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
         <section>
-            <h1 class="ruby">rubyacademy testing</h1>
+            <h1 class="ruby">rubyacademy 2013</h1>
+              <h1 class="ruby">testing</h1>
             <p>&nbsp;</p>
             <p>&nbsp; «Program testing can be used to&nbsp;</p>
             <p>show the presence of bugs, but never to&nbsp;</p>
@@ -108,7 +109,7 @@
                 <li>is a software development process</li>
                 <li>from Extreme Programming, Kent Beck</li>
                 <li>TDD enforces good code design</li>
-                <li>first case of code reuse</li>
+                <li>tests are the first case of code reuse</li>
               </ul>
             </div>
         </section>
@@ -118,7 +119,7 @@
             <br>
             <ul>
               <li class="red">write failing test</li>
-              <li class="green">make test pass</li>
+              <li class="green">make the test pass</li>
               <li class="yellow">refactor code</li>
             </ul>
         </section>
@@ -185,9 +186,65 @@
         </section>
 
 
+        <section>
+          <h2>test doubles</h2>
+          <br>
+          <p>
+            <span class="green">stub</span>: replacement object
+          </p>
+          <p>
+            <span class="green">mock</span>: stub with expectation
+          </p>
+        </section>
 
+        <section>
+          <h2>stubs in rspec</h2>
+          <pre>
+            <code contenteditable style="font-size: 18px;">
+  describe Person do
+    context 'when has same mother of another person' do
+      # with real objects
+      let(:mother) { Person.new('Eva', 'Doe') }
+      let(:other)  { Person.new('Abel', 'Doe', :mother => mother) }
+      subject      { Person.new('Cain', 'Doe', :mother => mother) }
 
+      # with stubs
+      let(:mother) { stub }
+      let(:other)  { stub(:mother => mother) }
+      subject      { Person.new('Cain', 'Doe', :mother => mother) }
+            </code>
+          </pre>
+        </section>
 
+        <section>
+          <h2>mocks in rspec</h2>
+          <pre>
+            <code contenteditable style="font-size: 18px;">
+    class PeopleController < ApplicationController
+      def show
+        @person = Person.find(params[:id])
+      end
+    end
+
+    describe PeopleController do
+      describe '#show' do
+        let(:person) { double }
+        before { Person.should_receive(:find).and_return(person) }
+        # ...
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>why doubles?</h2>
+          <br>
+          <ul>
+            <li>faster tests execution</li>
+            <li>test only what you need</li>
+            <li>intention revealing</li>
+          </ul>
+          </p>
+        </section>
 
 
 
