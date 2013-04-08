@@ -14,4 +14,5 @@ See slides for brief introduction to code testing and main ruby testing framewor
   Bonus: dependency injection makes tests simpler
 
 ### Student Activities:
-  * complete specs/array_spec.rb and make all tests pass
+  * complete specs/string_specs.rb making all tests pass
+  * complete specs/array_spec.rb making all tests pass
