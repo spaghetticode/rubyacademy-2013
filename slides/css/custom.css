@@ -34,10 +34,6 @@ ul {
   line-height: 150% !important;
 }
 
-.reveal pre {
-  width: 100%;
-}
-
 .reveal pre code {
-  max-height: 1000px;
+  max-height: 500px;
 }

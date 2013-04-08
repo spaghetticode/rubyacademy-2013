@@ -166,13 +166,13 @@
               <pre>
                 <code contenteditable style="font-size: 18px; margin-top: 20px;">
                   class ZeroTest < Test::Unit::TestCase
+                    def setup
+                      @zero = 0
+                    end
 
-                  def setup
-                    @zero = 0
-                  end
-
-                  def test_zero_is_zero
-                    assert @zero.zero?
+                    def test_zero_is_zero
+                      assert @zero.zero?
+                    end
                   end
 
                   # rspec
@@ -212,6 +212,23 @@
       let(:mother) { stub }
       let(:other)  { stub(:mother => mother) }
       subject      { Person.new('Cain', 'Doe', :mother => mother) }
+
+      it { subject.should be_sibling(other) }
+    end
+
+    class Person
+      attr_reader :name, :surname, :mother
+
+      def initialize(name, surname, opts)
+        @name    = name
+        @surname = surname
+        @mother  = opts[:mother]
+      end
+
+      def sibling?(other)
+        mother == other.mother
+      end
+    end
             </code>
           </pre>
         </section>
