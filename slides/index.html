@@ -170,7 +170,7 @@
                       @zero = 0
                     end
 
-                    def test_zero_is_zero
+                    test "Zero is zero" do
                       assert @zero.zero?
                     end
                   end
@@ -178,7 +178,8 @@
                   # rspec
 
                   describe 0 do
-                    it { subject.should be_zero }
+                    subject { 0 }
+                    it { should be_zero }
                   end
                 </code>
               </pre>
