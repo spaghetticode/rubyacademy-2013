@@ -73,4 +73,7 @@ describe Countdown do
   end
 
   # TODO what happens if today is december 27th?
+  context 'when today is december 27th' do
+    pending
+  end
 end
