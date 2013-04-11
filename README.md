@@ -36,7 +36,7 @@ $ rspec examples/spec/xmas_countdown_spec.rb --color --format documentation
 
 ## Test doubles
 
-Vedi il file test_doubles.md (guardatelo direttamente da github così lo vedrete formattato).
+Vedi il file [ test_doubles.md](https://github.com/spaghetticode/rubyacademy-testing/blob/master/test_doubles.md)
 
 Per eseguire il codice degli esempi inclusi in test_doubles.md scrivere nel terminale:
 
