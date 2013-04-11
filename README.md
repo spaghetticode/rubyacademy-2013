@@ -18,6 +18,8 @@ Scrivere il corpo dei test nei seguenti file:
   * specs/array_spec.rb making all tests pass
   * specs/string_specs.rb making all tests pass
 
+FizzBuzzBar: Test Driven Development con Rspec
+
 Countdown: quanti giorni mancano a Natale?
   * Obiettivo: gli stub ci aiutano a rendere i test sulle date affidabili fissando la data ad un valore predefinito
   * Compito a casa: cosa succede se oggi è il 27 dicembre? Scrivere dei test che espongano il problema e successivamente correggere il codice eliminando il bug
