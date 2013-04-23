@@ -60,8 +60,8 @@ end
 
 describe Person do
   context 'when persons have different parents' do
-    let(:mother) { mock }
-    let(:other)  { mock(:mother => mock) }
+    let(:mother) { stub }
+    let(:other)  { stub(:mother => stub) }
     subject      { Person.new('Bill', 'Gates', :mother => mother) }
 
     it 'they are not siblings' do
