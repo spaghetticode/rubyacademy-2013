@@ -1,4 +1,4 @@
-# RubyAcademy 2013 - Testing
+# RubyAcademy 2013 Lessons
 
 Just a collection of lessons I gave during 2013 Ruby Academy at mikamai in Milan.
 
