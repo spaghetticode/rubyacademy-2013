@@ -1,0 +1,39 @@
+.test-table {
+  margin: 0 auto !important;
+  border-collapse: collapse;
+}
+
+.test-table th, .test-table td {
+  border: 3px solid white;
+  padding: 30px 40px;
+  text-align: center !important;
+}
+
+.test-table th {
+  color: white;
+  text-transform: uppercase;
+}
+
+.green {
+  color: #00cc00;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.ruby {
+  color: #e0115f !important;
+}
+
+ul {
+  line-height: 150% !important;
+}
+
+.reveal pre code {
+  max-height: 500px;
+}

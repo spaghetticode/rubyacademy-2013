@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>ruby academy 2013 - rails extras</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+    <style type="text/css">
+      code {
+        font-size: 18px;
+        margin-top: 20px;
+      }
+    </style>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+        <section>
+            <h1 class="ruby">rubyacademy 2013</h1>
+              <h1 class="ruby">rails extras</h1>
+        </section>
+
+
+        <section>
+            <h2>ActiveRecord what?</h2>
+            <br>
+            <div>ActiveRecord is an ORM (Object Relational Mapping)</div>
+            <br>
+            <div>ActiveRecord adds an OOP layer to databases</div>
+            <br>
+            <div>Because people understand objects, not SQL</div>
+        </section>
+
+
+        <section>
+            <h2>ActiveRecord Associations</h2>
+            <ul>
+              <li>belongs_to</li>
+              <li>has_one</li>
+              <li>has_many</li>
+              <li>has_many :through</li>
+              <li>has_and_belongs_to_many</li>
+              <li>polymorphic associations</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>has_one</h2>
+            <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+              class Citizen
+                has_one :ssn
+              end
+
+              class Ssn
+                belongs_to :citizen
+              end
+
+              kane = Citizen.create!(:name => 'Kane')
+              ssn  = Ssn.create!(:code => 'AA123CCC0498')
+              kane.update_attribute :ssn, ssn
+              kane.ssn.create(:code => 'BB89327LK')
+              kane.update_attribute :ssn, new_ssn
+              ssn.citizen_id #=> nil
+            </code>
+          </pre>
+        </section>
+
+
+        <section>
+            <h2>has_many</h2>
+            <pre>
+              <code contenteditable>
+                class Person
+                  has_many :pets
+                end
+
+                class Pet
+                  belongs_to :person
+                end
+
+                me = Person.create!(:name => 'Andrea')
+                ciuffo = me.pets.create!(:name => 'Ciuffo')
+              </code>
+            </pre>
+        </section>
+
+
+        <section>
+            <h2>has_many - dependent option</h2>
+            <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+                class Person
+                  has_many :pets, :dependent => :destroy
+                end
+              </code>
+            </pre>
+            <ul>
+              <li><span class="green">destroy</span> runs ActiveRecord callbacks</li>
+              <li><span class="green">delete_all</span> doesn't run ActiveRecord callbacks</li>
+              <li><span class="green">nullify</span> associated objects fk set to NULL - no callback run</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>has_many - more options</h2>
+            <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+  class Writer
+    has_many :novels, :class_name => 'Book', :foreign_key => :author_id
+  end
+
+  class Book
+    belongs_to :author, :class_name => 'Writer'
+  end
+
+  me = Writer.create!(:name => 'andrea')
+  novel = Book.create!(:name => 'learn ruby', :author_id => me.id)
+  me.novels #=> [novel]
+  novel.author #=> me
+              </code>
+            </pre>
+        </section>
+
+
+         <section>
+            <h2>has_many as join table</h2>
+            <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+        class Street
+          belongs_to :city
+        end
+
+        class City
+          has_many :streets
+        end
+
+        class Country
+          has_many :cities
+          has_many :streets, :through => :cities
+        end
+
+        italy   = Country.create(:name => 'Italy')
+        milan   = City.create(:name => 'Milan', :country => italy)
+        street  = Street.create(:name => 'via Garibaldi', :city => milan)
+        italy.streets
+              </code>
+            </pre>
+            <ul>
+              <li><span class="green">destroy</span> runs ActiveRecord callbacks</li>
+              <li><span class="green">delete_all</span> doesn't run ActiveRecord callbacks</li>
+              <li><span class="green">nullify</span> associated objects fk set to NULL - no callback run</li>
+            </ul>
+        </section>
+
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
