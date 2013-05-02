@@ -51,7 +51,7 @@
 
 
         <section>
-            <h2>ActiveRecord what?</h2>
+            <h2 class="green">ActiveRecord what?</h2>
             <br>
             <div>ActiveRecord is an ORM (Object Relational Mapping)</div>
             <br>
@@ -62,7 +62,7 @@
 
 
         <section>
-            <h2>ActiveRecord Associations</h2>
+            <h2 class="green">ActiveRecord Associations</h2>
             <ul>
               <li>belongs_to</li>
               <li>has_one</li>
@@ -75,7 +75,7 @@
 
 
         <section>
-            <h2>has_one</h2>
+            <h2 class="green">has_one</h2>
             <pre>
               <code contenteditable style="font-size: 18px; margin-top: 20px;">
               class Citizen
@@ -98,7 +98,7 @@
 
 
         <section>
-            <h2>has_many</h2>
+            <h2 class="green">has_many</h2>
             <pre>
               <code contenteditable>
                 class Person
@@ -117,7 +117,7 @@
 
 
         <section>
-            <h2>has_many - dependent option</h2>
+            <h2 class="green">has_many - dependent option</h2>
             <pre>
               <code contenteditable style="font-size: 18px; margin-top: 20px;">
                 class Person
@@ -134,7 +134,7 @@
 
 
         <section>
-            <h2>has_many - more options</h2>
+            <h2 class="green">has_many - more options</h2>
             <pre>
               <code contenteditable style="font-size: 18px; margin-top: 20px;">
   class Writer
@@ -155,7 +155,7 @@
 
 
          <section>
-            <h2>has_many as join table</h2>
+            <h2 class="green">has_many :through</h2>
             <pre>
               <code contenteditable style="font-size: 18px; margin-top: 20px;">
         class Street
@@ -177,14 +177,82 @@
         italy.streets
               </code>
             </pre>
-            <ul>
-              <li><span class="green">destroy</span> runs ActiveRecord callbacks</li>
-              <li><span class="green">delete_all</span> doesn't run ActiveRecord callbacks</li>
-              <li><span class="green">nullify</span> associated objects fk set to NULL - no callback run</li>
-            </ul>
         </section>
 
 
+       <section>
+            <h2 class="green">has_and_belongs_to_many</h2>
+            <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+        class Student
+          has_and_belongs_to_many :subjects
+        end
+
+        class Subject
+          has_and_belongs_to_many :students
+        end
+
+        me   = Student.create(:name => 'Andrea')
+        math = Subject.create(:name => 'math')
+        me.subjects << math
+              </code>
+            </pre>
+            <h4 class="yellow">When use has_and_belongs_to_many</h4>
+            <p class="green">The join table has no meaning in the application scope</p>
+        </section>
+
+
+       <section>
+            <h2 class="green">join table with has_many :through</h2>
+            <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+        class Grade
+          belongs_to :new_student
+          belongs_to :new_subject
+        end
+
+        class NewStudent
+          has_many :grades
+          has_many :new_subjects, :through => :grades
+        end
+
+        class NewSubject
+          has_many :grades
+          has_many :new_students, :through => :grades
+        end
+
+        me   = NewStudent.create(:name => 'Andrea')
+        math = NewSubject.create(:name => 'math')
+        a    = Grade.create(:value => 'A', :new_student => me, :new_subject => math)
+        me.subjects
+              </code>
+            </pre>
+        </section>
+
+
+       <section>
+            <h2 class="green">polymorphic associations</h2>
+            <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+        class Article
+          has_many :images, :as => :imageable
+        end
+
+        class Post
+          has_many :images, :as => :imageable
+        end
+
+        class Image
+          belongs_to :imageable, :polymorphic => true
+        end
+
+        article = Article.create(:title => 'Obama wins')
+        post    = Post.create(:title => 'Today I am happy')
+        image   = Image.create(:path => 'some/path.png', :imageable => article)
+        article.images
+              </code>
+            </pre>
+        </section>
 			</div>
 		</div>
 

@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502201536) do
+ActiveRecord::Schema.define(:version => 20130502210955) do
+
+  create_table "articles", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "books", :force => true do |t|
     t.string   "name"
@@ -39,6 +45,34 @@ ActiveRecord::Schema.define(:version => 20130502201536) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "grades", :force => true do |t|
+    t.integer  "new_student_id"
+    t.integer  "new_subject_id"
+    t.string   "value"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "path"
+    t.string   "imageable_type"
+    t.integer  "imageable_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "new_students", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "new_subjects", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "people", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -48,6 +82,12 @@ ActiveRecord::Schema.define(:version => 20130502201536) do
   create_table "pets", :force => true do |t|
     t.string   "name"
     t.integer  "person_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -62,6 +102,23 @@ ActiveRecord::Schema.define(:version => 20130502201536) do
   create_table "streets", :force => true do |t|
     t.string   "name"
     t.integer  "city_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "students", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "students_subjects", :force => true do |t|
+    t.integer "student_id"
+    t.integer "subject_id"
+  end
+
+  create_table "subjects", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
