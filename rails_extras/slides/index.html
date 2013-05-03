@@ -234,24 +234,61 @@
             <h2 class="green">polymorphic associations</h2>
             <pre>
               <code contenteditable style="font-size: 18px; margin-top: 20px;">
-        class Article
-          has_many :images, :as => :imageable
-        end
+  class Article
+    has_many :images, :as => :imageable
+  end
 
-        class Post
-          has_many :images, :as => :imageable
-        end
+  class Post
+    has_many :images, :as => :imageable
+  end
 
-        class Image
-          belongs_to :imageable, :polymorphic => true
-        end
+  class Image
+    belongs_to :imageable, :polymorphic => true
+  end
 
-        article = Article.create(:title => 'Obama wins')
-        post    = Post.create(:title => 'Today I am happy')
-        image   = Image.create(:path => 'some/path.png', :imageable => article)
-        article.images
+  article = Article.create(:title => 'Obama wins')
+  post    = Post.create(:title => 'Today I am happy')
+  image   = Image.create(:path => 'some/path.png', :imageable => article)
+  article.images
               </code>
             </pre>
+        </section>
+
+
+       <section>
+            <h2 class="green">asset pipeline</h2>
+            <br>
+            <ul>
+              <li>js, css, images</li>
+              <li>concatenate and minify JS and CSS files</li>
+              <li>serve image files from a single directory</li>
+              <li>versioning of assets via md5 digest</li>
+              <li>provide a consistent structure for assets</li>
+            </ul>
+        </section>
+
+
+       <section>
+            <h2 class="green">where</h2>
+            <br>
+            <ul>
+              <li>app/assets -> your application assets</li>
+              <li>lib/assets -> your libraries</li>
+              <li>vendor/assets -> third parties libraries</li>
+            </ul>
+        </section>
+
+
+       <section>
+            <h2 class="green">supported formats</h2>
+            <br>
+            <ul>
+              <li>css, scss</li>
+              <li>javascript, coffeescript</li>
+              <li>files ending with erb will be parsed by rails</li>
+              <li>image-url("rails.png") -> url(/assets/rails.png)</li>
+              <li>image-path("rails.png") -> "/assets/rails.png"</li>
+            </ul>
         </section>
 			</div>
 		</div>
