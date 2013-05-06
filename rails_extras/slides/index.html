@@ -280,6 +280,19 @@
 
 
        <section>
+            <h2 class="green">how</h2>
+            <p>application.html.erb</p>
+            <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+                <%= stylesheet_link_tag    "application", :media => "all" %>
+                <%= javascript_include_tag "application" %>
+              </code>
+            </pre>
+
+        </section>
+
+
+       <section>
             <h2 class="green">supported formats</h2>
             <br>
             <ul>
@@ -290,6 +303,116 @@
               <li>image-path("rails.png") -> "/assets/rails.png"</li>
             </ul>
         </section>
+
+
+       <section>
+            <h2 class="green">ActiveRecord Validations</h2>
+            <br>
+            <p>Ensure that data that enters in the db is correct</p>
+        </section>
+
+        <section>
+          <h2>presence validation</h2>
+           <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+                class Person
+                  validates :name, :presence => true
+                end
+
+                # won't save as long as name is nil
+              </code>
+            </pre>
+        </section>
+
+
+        <section>
+          <h2>common options</h2>
+           <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+                :on => :create # or update
+
+                :message => I18n.t('some_error')
+
+                :allow_blank => true
+
+                :allow_nil => true
+
+                :if => :active?
+                :if => lambda { |r| r.active? }
+                :unless => 'password.blank?'
+              </code>
+            </pre>
+        </section>
+
+
+        <section>
+          <h2>uniqueness validation</h2>
+           <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+                class Person
+                  validates :ssn, :uniqueness => true
+                end
+
+                # options:
+                :case_sensitive => false
+                :scope => [:country_id]
+              </code>
+            </pre>
+        </section>
+
+
+        <section>
+          <h2>length validation</h2>
+           <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+                class Person
+                  validates :name, :length => {:maximum => 15}
+                end
+
+                # options:
+                :minimum => 2
+                :in => [2..10]
+                :is => 4
+              </code>
+            </pre>
+        </section>
+
+
+        <section>
+          <h2>inclusion validation</h2>
+           <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+                class Tshirt
+                  validates :size, :inclusion => [:s, :m, :l, :xl]
+                end
+              </code>
+            </pre>
+        </section>
+
+
+        <section>
+          <h2>numericality validation</h2>
+           <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+                class Person
+                  validates :age, :numericality => { :only_integer => true }
+                end
+              </code>
+            </pre>
+        </section>
+
+
+        <section>
+          <h2>format validation</h2>
+           <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+                class Person
+                  validates :ssn, :format => /\d{2}\w{3}/
+                end
+              </code>
+            </pre>
+        </section>
+
 			</div>
 		</div>
 
